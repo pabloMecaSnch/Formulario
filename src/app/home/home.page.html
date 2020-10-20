@@ -5,16 +5,46 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  
+<ion-content padding class="form-content">
+  <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+      <ion-item>
+      <ion-label position="floating" color="primary">Username</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Last name</ion-label>
+      <ion-input type="text" formControlName="lastname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Gender</ion-label>
+      <ion-select formControlName="gender" cancelText="Cancel" okText="OK">
+        <ion-select-option *ngFor="let gender of genders" [value]="gender">{{gender}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">I accept terms and conditions</ion-label>
+      <ion-checkbox color="primary" formControlName="terms"></ion-checkbox>
+    </ion-item>
+    <form [formGroup]="matching_passwords_group">
+      <ion-item>
+      <ion-label position="floating" color="primary">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-label position="floating" color="primary">Confirm Password</ion-label>
+      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+    </form>
+    <ion-button color="primary" class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">Submit data</ion-button>
+  </form>
 </ion-content>
+  
